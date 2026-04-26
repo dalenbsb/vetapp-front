@@ -1,0 +1,30 @@
+<div class="auth-container">
+
+  <p-card header="Criar Conta">
+
+    <div class="field">
+      <input pInputText [(ngModel)]="username" placeholder="Usuário" />
+    </div>
+
+    <div class="field">
+      <input pInputText [(ngModel)]="email" placeholder="Email" />
+    </div>
+
+    <div class="field">
+      <input type="password" pInputText [(ngModel)]="password" placeholder="Senha" />
+    </div>
+
+    <button
+      pButton
+      label="Cadastrar"
+      (click)="register()"
+      class="w-full">
+    </button>
+
+    <div class="links">
+      <a routerLink="/login">Voltar para login</a>
+    </div>
+
+  </p-card>
+
+</div>

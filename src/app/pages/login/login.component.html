@@ -1,0 +1,67 @@
+<div class="login-container">
+
+  <div class="login-box">
+
+    <div class="left">
+      <h1>🐾 VetApp</h1>
+      <p>Gerencie seus pacientes com eficiência</p>
+    </div>
+
+    <p-card class="login-card fade-in">
+
+      <h2>Login</h2>
+
+      <div class="field">
+        <span class="p-input-icon-left full-width">
+          <i class="pi pi-user"></i>
+          <input pInputText [(ngModel)]="username" placeholder="Usuário" class="w-full"/>
+        </span>
+      </div>
+
+      <div class="field password-field">
+        <span class="p-input-icon-left w-full">
+          <i class="pi pi-lock"></i>
+
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            pInputText
+            [(ngModel)]="password"
+            placeholder="Senha"
+            class="w-full pr-3rem" />
+
+          <i
+            class="pi toggle-password"
+            [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"
+            (click)="showPassword = !showPassword">
+          </i>
+        </span>
+      </div>
+
+      <div class="options">
+        <p-checkbox [(ngModel)]="rememberMe" binary="true"></p-checkbox>
+        <label>Lembrar usuário</label>
+      </div>
+
+      <button
+        pButton
+        label="Entrar"
+        icon="pi pi-sign-in"
+        [loading]="loading"
+        (click)="login()"
+        class="w-full">
+      </button>
+
+      <div class="links">
+        <a routerLink="/forgot-password">Esqueceu a senha?</a>
+        <a routerLink="/register">Criar conta</a>
+      </div>
+
+      <small class="error" *ngIf="error">
+        {{ error }}
+      </small>
+
+    </p-card>
+
+  </div>
+
+</div>
