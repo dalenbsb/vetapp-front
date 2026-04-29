@@ -15,5 +15,5 @@ COPY --from=build /app/dist/vetapp-front /usr/share/nginx/html
 # Configuração para Angular (rotas)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
