@@ -9,8 +9,8 @@ RUN npm run build -- --configuration production
 # Servidor web (nginx)
 FROM nginx:alpine
 
-# Copia o build para o nginx
-COPY --from=build /app/dist/vetapp-front /usr/share/nginx/html
+# Copia o build correto
+COPY --from=build /app/dist/vetapp-front/browser /usr/share/nginx/html
 
 # Configuração para Angular (rotas)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
