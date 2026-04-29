@@ -1,4 +1,4 @@
-# Etapa 1 - build
+# Build da aplicação Angular
 FROM node:18 AS build
 
 WORKDIR /app
@@ -6,10 +6,14 @@ COPY . .
 RUN npm install
 RUN npm run build -- --configuration production
 
-# Etapa 2 - servidor nginx
+# Servidor web (nginx)
 FROM nginx:alpine
 
-COPY --from=build /app/dist/seu-projeto /usr/share/nginx/html
+# Copia o build para o nginx
+COPY --from=build /app/dist/vetapp-front /usr/share/nginx/html
+
+# Configuração para Angular (rotas)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
