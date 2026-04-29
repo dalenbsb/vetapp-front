@@ -1,0 +1,46 @@
+name: Deploy Angular to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular
+        run: npm run build --configuration production
+
+      - name: Google Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & Push
+        run: |
+          gcloud builds submit \
+            --tag southamerica-east1-docker.pkg.dev/$PROJECT_ID/vetapp/vetapp-front
+
+      - name: Deploy Cloud Run
+        run: |
+          gcloud run deploy vetapp-front \
+            --image southamerica-east1-docker.pkg.dev/$PROJECT_ID/vetapp/vetapp-front \
+            --region southamerica-east1 \
+            --platform managed \
+            --allow-unauthenticated
