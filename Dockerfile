@@ -1,19 +1,19 @@
-# Build stage
-FROM node:20 as build
+# Build da aplicação Angular
+FROM node:20 AS build
 
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
 COPY . .
+RUN npm install
+RUN npm run build -- --configuration production
 
-RUN npm run build --configuration production
-
-# Runtime stage (Nginx)
+# Servidor web (nginx)
 FROM nginx:alpine
 
-COPY --from=build /app/dist/vetapp-front /usr/share/nginx/html
+# Copia o build correto
+COPY --from=build /app/dist/vetapp-front/browser /usr/share/nginx/html
 
-# Angular routing fix
+# Configuração para Angular (rotas)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
