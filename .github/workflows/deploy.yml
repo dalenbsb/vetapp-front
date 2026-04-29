@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      PROJECT_ID: vetappdalen
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Build Angular
-        run: npm run build --configuration production
+        run: npm run build
 
       - name: Google Auth
         uses: google-github-actions/auth@v2
