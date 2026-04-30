@@ -35,12 +35,14 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Build & Push
+      - name: Configure Docker Auth
         run: |
-          gcloud builds submit \
-            --tag southamerica-east1-docker.pkg.dev/$PROJECT_ID/vetapp/vetapp-front \
-            --async \
-            --quiet
+          gcloud auth configure-docker southamerica-east1-docker.pkg.dev
+
+      - name: Build & Push (Docker local)
+        run: |
+          docker build -t southamerica-east1-docker.pkg.dev/$PROJECT_ID/vetapp/vetapp-front .
+          docker push southamerica-east1-docker.pkg.dev/$PROJECT_ID/vetapp/vetapp-front
 
       - name: Deploy Cloud Run
         run: |
