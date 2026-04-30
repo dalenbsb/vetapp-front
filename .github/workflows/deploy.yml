@@ -38,8 +38,8 @@ jobs:
       - name: Build & Push
         run: |
           gcloud builds submit \
-            --no-source \
             --tag southamerica-east1-docker.pkg.dev/$PROJECT_ID/vetapp/vetapp-front \
+            --async \
             --quiet
 
       - name: Deploy Cloud Run
