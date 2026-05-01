@@ -50,7 +50,8 @@ export class LoginComponent {
 
     this.auth.login(this.username, this.password).subscribe({
       next: (res) => {
-        this.auth.saveToken(res.token);
+        //this.auth.saveToken(res.accessToken); //(agora o próprio service já salva via tap())
+        this.auth.saveRefreshToken(res.refreshToken);
 
         if (this.rememberMe) {
           localStorage.setItem('username', this.username);
