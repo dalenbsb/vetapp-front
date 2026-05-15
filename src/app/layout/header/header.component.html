@@ -1,5 +1,23 @@
 <div class="header">
-  <h3>Sistema Veterinário</h3>
 
-  <button pButton type="button" label="Sair" icon="pi pi-sign-out" (click)="logout()"></button>
+  <div class="header-left">
+    <div class="logo">
+      <i class="pi pi-heart-fill"></i>
+    </div>
+
+    <div class="title-group">
+      <h2>Sistema Veterinário</h2>
+      <span>Gestão clínica inteligente</span>
+    </div>
+  </div>
+
+  <button
+    pButton
+    type="button"
+    label="Sair"
+    icon="pi pi-sign-out"
+    class="logout-btn"
+    (click)="logout()">
+  </button>
+
 </div>
