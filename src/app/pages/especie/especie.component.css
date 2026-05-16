@@ -1,0 +1,146 @@
+::ng-deep .crud-dialog {
+
+    .p-dialog {
+        background: #111827;
+        color: #f9fafb;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .p-dialog-header {
+        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    .p-dialog-content {
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    .p-dialog-footer {
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        background: #111827;
+    }
+
+    .p-dialog-header-icon {
+        color: #d1d5db;
+
+        &:hover {
+            background: rgba(255,255,255,0.08);
+            color: #ffffff;
+        }
+    }
+}
+
+/* HEADER */
+.dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dialog-icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    min-width: 3.2rem;
+
+    border-radius: 14px;
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+
+    i {
+        font-size: 1.4rem;
+        color: #ffffff;
+    }
+}
+
+.dialog-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.dialog-title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f9fafb;
+    line-height: 1.2;
+}
+
+.dialog-subtitle {
+    font-size: 0.92rem;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+
+/* BODY */
+.dialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.form-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+/* INPUTS */
+.input-wrapper {
+    width: 100%;
+}
+
+.custom-input,
+::ng-deep .crud-dialog .p-inputtext,
+::ng-deep .crud-dialog .p-select {
+    width: 100%;
+    height: 44px;
+    border-radius: 10px;
+    background: #1f2937;
+    border: 1px solid #374151;
+    color: #f9fafb;
+}
+
+::ng-deep .crud-dialog .p-inputtext::placeholder {
+    color: #9ca3af;
+}
+
+::ng-deep .crud-dialog .p-inputtext:focus,
+::ng-deep .crud-dialog .p-select:not(.p-disabled).p-focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px #3b82f6;
+}
+
+::ng-deep .crud-dialog .p-select-label {
+    color: #f9fafb;
+}
+
+::ng-deep .crud-dialog .p-select-dropdown {
+    color: #d1d5db;
+}
+
+/* FOOTER */
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    width: 100%;
+}

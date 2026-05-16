@@ -1,0 +1,163 @@
+<p-toast></p-toast>
+
+<p-confirmDialog></p-confirmDialog>
+
+<div class="card">
+
+    <div class="flex justify-content-between align-items-center mb-4">
+
+        <h3>Espécies</h3>
+
+        <button
+            pButton
+            type="button"
+            label="Nova Espécie"
+            icon="pi pi-plus"
+            (click)="novo()">
+        </button>
+
+    </div>
+
+    <p-table
+        [value]="registros"
+        [loading]="loading"
+        responsiveLayout="scroll"
+        dataKey="id">
+
+        <ng-template pTemplate="header">
+
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th width="150">Ações</th>
+            </tr>
+
+        </ng-template>
+
+        <ng-template pTemplate="body" let-registro>
+
+            <tr>
+
+                <td>{{ registro.id }}</td>
+
+                <td>{{ registro.descricao }}</td>
+
+                <td>
+
+                    <button
+                        pButton
+                        pRipple
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-text"
+                        (click)="editar(registro)">
+                    </button>
+
+                    <button
+                        pButton
+                        pRipple
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-text p-button-danger"
+                        (click)="excluir(registro)">
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </ng-template>
+
+    </p-table>
+</div>
+
+<p-dialog
+    [(visible)]="registroDialog"
+    [modal]="true"
+    [closable]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [style]="{ width: '32rem' }"
+    [breakpoints]="{
+        '960px': '75vw',
+        '640px': '95vw'
+    }"
+    styleClass="crud-dialog">
+
+    <!-- HEADER -->
+    <ng-template pTemplate="header">
+
+        <div class="dialog-header">
+
+            <div class="dialog-icon">
+                <i class="pi pi-tag"></i>
+            </div>
+
+            <div class="dialog-header-text">
+
+                <h2 class="dialog-title">
+                    {{ registro?.id ? 'Editar Espécie' : 'Nova Espécie' }}
+                </h2>
+
+                <span class="dialog-subtitle">
+                    Cadastre e organize as espécies do sistema
+                </span>
+
+            </div>
+
+        </div>
+
+    </ng-template>
+
+    <!-- BODY -->
+    <div
+        class="dialog-body"
+        *ngIf="registro">
+
+        <div class="form-group">
+
+            <label class="form-label">
+                Descrição
+            </label>
+
+            <span class="p-input-icon-left input-wrapper">
+
+                <i class="pi pi-tag"></i>
+
+                <input
+                    pInputText
+                    [(ngModel)]="registro.descricao"
+                    placeholder="Digite a descrição da espécie"
+                    class="w-full custom-input" />
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <ng-template pTemplate="footer">
+
+        <div class="dialog-footer">
+
+            <button
+                pButton
+                type="button"
+                label="Cancelar"
+                icon="pi pi-times"
+                class="p-button-text"
+                (click)="fecharDialog()">
+            </button>
+
+            <button
+                pButton
+                type="button"
+                label="Salvar"
+                icon="pi pi-check"
+                (click)="salvar()">
+            </button>
+
+        </div>
+
+    </ng-template>
+
+</p-dialog>

@@ -21,13 +21,15 @@ export class AuthService {
     return this.http.post<AuthResponse>(this.api, { username, password })
       .pipe(
         tap(response => {
+          debugger
           this.saveAccessToken(response.accessToken);
           this.saveRefreshToken(response.refreshToken);
+           console.log(localStorage.getItem('accessToken'));
         })
       );
   }
 
-  // 🔐 Access Token
+  // Access Token
   saveAccessToken(token: string) {
     localStorage.setItem('accessToken', token);
   }
@@ -47,7 +49,11 @@ export class AuthService {
 
   // 🔍 Auth status
   isAuthenticated(): boolean {
-    return !!this.getAccessToken();
+
+    debugger
+    const token = this.getAccessToken();
+
+    return token !== null && token !== undefined && token !== '';
   }
 
   logout() {

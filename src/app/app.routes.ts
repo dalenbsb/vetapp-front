@@ -32,7 +32,19 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () => import('./pages/home/home.component')
           .then(m => m.HomeComponent)
-      }
+      },
+      {
+            path: 'especies',
+            loadComponent: () =>
+                import('./pages/especie/especie.component')
+                    .then(m => m.EspecieComponent)
+        },
+        {
+            path: 'cores',
+            loadComponent: () =>
+                import('./pages/cor/cor.component')
+                    .then(m => m.CorComponent)
+        }
     ]
   },
   {
