@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { UserComponent } from './pages/user/user.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,12 @@ export const routes: Routes = [
             loadComponent: () =>
                 import('./pages/cor/cor.component')
                     .then(m => m.CorComponent)
+        },
+         {
+            path: 'users',
+            loadComponent: () =>
+                import('./pages/user/user.component')
+                    .then(m => m.UserComponent)
         }
     ]
   },

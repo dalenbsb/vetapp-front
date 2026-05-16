@@ -1,0 +1,158 @@
+<p-toast></p-toast>
+
+<p-toolbar styleClass="mb-4">
+
+    <ng-template pTemplate="left">
+
+        <button
+            pButton
+            pRipple
+            label="Novo Usuário"
+            icon="pi pi-plus"
+            class="p-button-success"
+            (click)="abrirNovo()">
+        </button>
+
+    </ng-template>
+
+</p-toolbar>
+
+<p-table
+    [value]="registros"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="10"
+    dataKey="id">
+
+    <ng-template pTemplate="header">
+
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Perfil</th>
+            <th>Ações</th>
+        </tr>
+
+    </ng-template>
+
+    <ng-template pTemplate="body" let-registro>
+
+        <tr>
+
+            <td>{{ registro.id }}</td>
+
+            <td>{{ registro.username }}</td>
+
+            <td>
+                <p-tag
+                    [value]="registro.role"
+                    [severity]="registro.role === 'ROLE_ADMIN' ? 'danger' : 'info'">
+                </p-tag>
+            </td>
+
+            <td>
+
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-text"
+                    (click)="editar(registro)">
+                </button>
+
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-trash"
+                    class="p-button-rounded p-button-text p-button-danger"
+                    (click)="deletar(registro)">
+                </button>
+
+            </td>
+
+        </tr>
+
+    </ng-template>
+
+</p-table>
+
+<p-dialog
+    [(visible)]="registroDialog"
+    [style]="{ width: '450px' }"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [closable]="true"
+    header="Usuário"
+    styleClass="custom-dialog">
+
+    <div class="field">
+
+        <label>Usuário</label>
+
+        <input
+            pInputText
+            [(ngModel)]="registro.username"
+            class="w-full" />
+
+        <small
+            class="p-error"
+            *ngIf="submitted && !registro.username">
+
+            Usuário obrigatório
+
+        </small>
+
+    </div>
+
+    <div class="field mt-3">
+
+        <label>Senha</label>
+
+        <input
+            pPassword
+            [(ngModel)]="registro.password"
+            [feedback]="false"
+            toggleMask="true"
+            class="w-full">
+    </div>
+
+    <div class="field mt-3">
+
+        <label>Perfil</label>
+
+        <p-select
+            [options]="roles"
+            [(ngModel)]="registro.role"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecione"
+            class="w-full">
+        </p-select>
+
+    </div>
+
+    <ng-template pTemplate="footer">
+
+        <button
+            pButton
+            pRipple
+            label="Cancelar"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="esconderDialog()">
+        </button>
+
+        <button
+            pButton
+            pRipple
+            label="Salvar"
+            icon="pi pi-check"
+            (click)="salvar()">
+        </button>
+
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>

@@ -1,0 +1,36 @@
+:host ::ng-deep {
+
+    .custom-dialog {
+
+        background: #1f2937;
+        color: #f9fafb;
+    }
+
+    .custom-dialog .p-dialog-header {
+        background: #111827;
+        color: #f9fafb;
+        border-bottom: 1px solid #374151;
+    }
+
+    .custom-dialog .p-dialog-content {
+        background: #1f2937;
+        color: #f9fafb;
+    }
+
+    .custom-dialog .p-dialog-footer {
+        background: #111827;
+        border-top: 1px solid #374151;
+    }
+
+    .custom-dialog label {
+        color: #f3f4f6;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .custom-dialog .p-inputtext,
+    .custom-dialog .p-password input,
+    .custom-dialog .p-dropdown {
+        width: 100%;
+    }
+}
